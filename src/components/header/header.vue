@@ -7,8 +7,8 @@
 
 <script>
 export default {
-  name: 'm-header'
-}
+  name: "m-header",
+};
 </script>
 
 <style lang="scss" scoped>
