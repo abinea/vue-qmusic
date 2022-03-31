@@ -18,4 +18,5 @@ module.exports = defineConfig({
       registerRouter(devServer.app);
     },
   },
+  productionSourceMap: false,
 });

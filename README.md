@@ -4,7 +4,7 @@
 
 1. 推荐页面（首页）
 
-   header：左logo 右user-icon → 用户中心页
+   header：左 logo 右 user-icon → 用户中心页
 
    tab：推荐、歌手、排行、搜索
 
@@ -12,7 +12,7 @@
 
    main：
 
-   header标题
+   header 标题
 
    scroll：歌单列表 （按需加载、虚拟化列表）→ 专辑详情页
 
@@ -28,7 +28,7 @@
 
    main：
 
-   scroll 歌曲列表，滚动覆盖blur image → 播放 MiniPlayer，收藏、播放列表等 → Player详情，圆形进度组件，左滑歌词，底部切换模式，进度条，播放列表/历史
+   scroll 歌曲列表，滚动覆盖 blur image → 播放 MiniPlayer，收藏、播放列表等 → Player 详情，圆形进度组件，左滑歌词，底部切换模式，进度条，播放列表/历史
 
 3. 搜索页面
 
@@ -38,11 +38,11 @@
 
 4. 歌手页面
 
-   header：最热歌手照片background-image
+   header：最热歌手照片 background-image
 
    main：
 
-   scroll歌手排行列表 → 歌手详情
+   scroll 歌手排行列表 → 歌手详情
 
    sider 索引列表组件
 
@@ -56,9 +56,9 @@
 
 8. 用户中心页面
 
-   header：圆形avatar，username，user-level，关注，粉丝
+   header：圆形 avatar，username，user-level，关注，粉丝
 
-   main：收藏歌曲，scroll收藏歌单 → 专辑详情页面
+   main：收藏歌曲，scroll 收藏歌单 → 专辑详情页面
 
 #### 基础组件
 
@@ -93,7 +93,7 @@
 1. 推荐列表
 2. 歌曲列表
 3. 歌手详情
-4. 歌曲url获取
+4. 歌曲 url 获取
 5. 歌词
 6. 歌单专辑
 7. 排行榜
@@ -101,13 +101,13 @@
 9. 热门搜索
 10. 搜索查询
 
-#### JS模块
+#### JS 模块
 
 1. array-store：数组类型数据本地存储模块
 2. constant：常量存储模块
 3. create-detail-component：创建通用详情模块
-4. create-loading-like-directive：创建类似loading效果的自定义指令模块
-5. dom：DOM操作辅助模块
+4. create-loading-like-directive：创建类似 loading 效果的自定义指令模块
+5. dom：DOM 操作辅助模块
 6. util：工具库模块
 
 #### 第三方库
@@ -124,6 +124,6 @@ good-storage 本地存储插件
 
 lyrics-parser 歌词解析插件
 
-create-keyframe-animation 动态创建Animation插件
+create-keyframe-animation 动态创建 Animation 插件
 
 throttle-debounce 截流防抖插件
