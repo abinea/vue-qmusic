@@ -9,6 +9,7 @@ specifiers:
   '@vue/cli-plugin-vuex': ~5.0.0
   '@vue/cli-service': ~5.0.0
   '@vue/eslint-config-standard': ^6.1.0
+  axios: ^0.26.1
   core-js: ^3.8.3
   eslint: ^7.32.0
   eslint-config-prettier: ^8.5.0
@@ -39,6 +40,7 @@ devDependencies:
   '@vue/cli-plugin-vuex': 5.0.4_@vue+cli-service@5.0.4
   '@vue/cli-service': 5.0.4_8db454db4489944b59fec542fe851310
   '@vue/eslint-config-standard': 6.1.0_b8a7af3c44fa16d0dd4703d5fe724290
+  axios: 0.26.1
   eslint: 7.32.0
   eslint-config-prettier: 8.5.0_eslint@7.32.0
   eslint-plugin-import: 2.25.4_eslint@7.32.0
@@ -2354,6 +2356,14 @@ packages:
       picocolors: 1.0.0
       postcss: 8.4.12
       postcss-value-parser: 4.2.0
+    dev: true
+
+  /axios/0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
+    dependencies:
+      follow-redirects: 1.14.9_debug@4.3.4
+    transitivePeerDependencies:
+      - debug
     dev: true
 
   /babel-loader/8.2.4_fa907c5a4f16ccc493e21649ccc59574:
