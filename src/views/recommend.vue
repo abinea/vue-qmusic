@@ -6,6 +6,20 @@
           <slider v-if="sliders.length" :sliders="sliders"></slider>
         </div>
       </div>
+      <div class="recommend-list">
+        <h1 class="list-title">热门歌单推荐</h1>
+        <ul>
+          <li v-for="item in albums" class="item" :key="item.id">
+            <div class="icon">
+              <img width="60" height="60" :src="item.pic" />
+            </div>
+            <div class="text">
+              <h2 class="name">{{ item.username }}</h2>
+              <p class="title">{{ item.title }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -20,11 +34,14 @@ export default {
   data() {
     return {
       sliders: [],
+      albums: [],
     };
   },
   async created() {
     const result = await getRecommend();
+    console.log(result);
     this.sliders = result.sliders;
+    this.albums = result.albums;
   },
 };
 </script>
