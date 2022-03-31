@@ -1,5 +1,5 @@
 <template>
-  <div class="recommend">
+  <div class="recommend" v-loading:[loadingText]="loading">
     <scroll>
       <div class="recommend-content">
         <div class="slider-wrapper">
@@ -41,7 +41,7 @@ export default {
     return {
       sliders: [],
       albums: [],
-      loadingText: "正在载入",
+      loadingText: "加载中",
     };
   },
   computed: {
@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .recommend {
-  position: fixed;
+  // position: fixed;
   width: 100%;
   top: 88px;
   bottom: 0;
