@@ -26,6 +26,7 @@ specifiers:
   sass-loader: ^12.0.0
   vue: ^3.2.13
   vue-router: ^4.0.3
+  vue3-lazy: ^1.0.0-alpha.1
   vuex: ^4.0.0
 
 dependencies:
@@ -36,6 +37,7 @@ dependencies:
   core-js: 3.21.1
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
+  vue3-lazy: 1.0.0-alpha.1_vue@3.2.31
   vuex: 4.0.2_vue@3.2.31
 
 devDependencies:
@@ -6833,6 +6835,15 @@ packages:
       '@vue/runtime-dom': 3.2.31
       '@vue/server-renderer': 3.2.31_vue@3.2.31
       '@vue/shared': 3.2.31
+    dev: false
+
+  /vue3-lazy/1.0.0-alpha.1_vue@3.2.31:
+    resolution: {integrity: sha512-dpjpKK4DC5q+wZVtS/VY3X6pYBJHxRmYanr20s39RB6o6fvbneQ/DNuz37bipYfEdrEvbSZ95Y2SCexuznQNrQ==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      vue: ^3.0.0-alpha.9
+    dependencies:
+      vue: 3.2.31
     dev: false
 
   /vuex/4.0.2_vue@3.2.31:
