@@ -1,41 +1,53 @@
 <template>
   <div class="recommend">
-    <div class="recommend-content">
-      <div class="slider-wrapper">
-        <div class="slider-content">
-          <slider v-if="sliders.length" :sliders="sliders"></slider>
+    <scroll>
+      <div class="recommend-content">
+        <div class="slider-wrapper">
+          <div class="slider-content">
+            <slider v-if="sliders.length" :sliders="sliders"></slider>
+          </div>
+        </div>
+
+        <div class="recommend-list">
+          <h1 class="list-title" v-show="!loading">热门歌单推荐</h1>
+          <ul>
+            <li v-for="item in albums" class="item" :key="item.id">
+              <div class="icon">
+                <img width="60" height="60" />
+              </div>
+              <div class="text">
+                <h2 class="name">{{ item.username }}</h2>
+                <p class="title">{{ item.title }}</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="recommend-list">
-        <h1 class="list-title">热门歌单推荐</h1>
-        <ul>
-          <li v-for="item in albums" class="item" :key="item.id">
-            <div class="icon">
-              <img width="60" height="60" :src="item.pic" />
-            </div>
-            <div class="text">
-              <h2 class="name">{{ item.username }}</h2>
-              <p class="title">{{ item.title }}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </scroll>
   </div>
 </template>
 
 <script>
 import { getRecommend } from "@/service/recommend";
-import Slider from "@/components/base/slider/slider.vue";
-
+import Slider from "@/components/base/slider/slider";
+import Scroll from "@/components/base/scroll/scroll";
 export default {
   name: "recommend",
-  components: { Slider },
+  components: {
+    Slider,
+    Scroll,
+  },
   data() {
     return {
       sliders: [],
       albums: [],
+      loadingText: "正在载入",
     };
+  },
+  computed: {
+    loading() {
+      return !this.sliders.length && !this.albums.length;
+    },
   },
   async created() {
     const result = await getRecommend();

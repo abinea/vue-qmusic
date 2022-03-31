@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.12.16
   '@babel/eslint-parser': ^7.12.16
   '@better-scroll/core': ^2.4.2
+  '@better-scroll/observe-dom': ^2.4.2
   '@better-scroll/slide': ^2.4.2
   '@vue/cli-plugin-babel': ~5.0.0
   '@vue/cli-plugin-eslint': ~5.0.0
@@ -29,7 +30,9 @@ specifiers:
 
 dependencies:
   '@better-scroll/core': 2.4.2
+  '@better-scroll/observe-dom': 2.4.2
   '@better-scroll/slide': 2.4.2
+  axios: 0.26.1
   core-js: 3.21.1
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
@@ -44,7 +47,6 @@ devDependencies:
   '@vue/cli-plugin-vuex': 5.0.4_@vue+cli-service@5.0.4
   '@vue/cli-service': 5.0.4_8db454db4489944b59fec542fe851310
   '@vue/eslint-config-standard': 6.1.0_b8a7af3c44fa16d0dd4703d5fe724290
-  axios: 0.26.1
   eslint: 7.32.0
   eslint-config-prettier: 8.5.0_eslint@7.32.0
   eslint-plugin-import: 2.25.4_eslint@7.32.0
@@ -1277,6 +1279,12 @@ packages:
       '@better-scroll/shared-utils': 2.4.2
     dev: false
 
+  /@better-scroll/observe-dom/2.4.2:
+    resolution: {integrity: sha512-eeS77CZs+V72dkya10e5ptndBAbhQVcXoYGvfoIihOJgCPqO5MdYTpzRmlbshYCEE5juUMLe82Kx8FSbOejpAw==}
+    dependencies:
+      '@better-scroll/core': 2.4.2
+    dev: false
+
   /@better-scroll/shared-utils/2.4.2:
     resolution: {integrity: sha512-Gy/Jfbpu+hq0u+PcjkTqyXGqAf+0dexTzEZ5IDXEVwJVLmd3cx8A73oTcAZ8QZgk4wSHvlMjXecSaptkhnNPEw==}
     dev: false
@@ -2384,7 +2392,7 @@ packages:
       follow-redirects: 1.14.9
     transitivePeerDependencies:
       - debug
-    dev: true
+    dev: false
 
   /babel-loader/8.2.4_fa907c5a4f16ccc493e21649ccc59574:
     resolution: {integrity: sha512-8dytA3gcvPPPv4Grjhnt8b5IIiTcq/zeXOPk4iTYI0SVXcsmuGg7JtBRDp8S9X+gJfhQ8ektjXZlDu1Bb33U8A==}
@@ -3920,7 +3928,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: true
 
   /forwarded/0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
