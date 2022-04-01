@@ -21,15 +21,14 @@ export default {
     },
   },
   emits: ["scroll"],
-  setup(props, { emits }) {
+  setup(props, { emit }) {
     const rootRef = ref(null);
-    useScroll(rootRef, props, emits);
+    const scroll = useScroll(rootRef, props, emit);
 
     return {
       rootRef,
+      scroll,
     };
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
