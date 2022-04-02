@@ -1,7 +1,7 @@
 <template>
   <div class="recommend" v-loading:[loadingText]="loading">
-    <scroll>
-      <div class="recommend-content">
+    <scroll class="recommend-content">
+      <div>
         <div class="slider-wrapper">
           <div class="slider-content">
             <slider v-if="sliders.length" :sliders="sliders"></slider>
@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .recommend {
-  // position: fixed;
+  position: fixed;
   width: 100%;
   top: 88px;
   bottom: 0;
