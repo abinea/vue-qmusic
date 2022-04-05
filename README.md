@@ -2,7 +2,7 @@
 
 #### 视图组件
 
-1. 推荐页面（首页）✔️
+1. ✔️ 推荐页面（首页）
 
    ✔️header： 左 logo 右 user-icon → 用户中心页
 
@@ -36,15 +36,13 @@
 
    main：scroll 搜索详情/搜索无结果
 
-4. 歌手页面
+4. ✔️ 歌手页面
 
-   header：最热歌手照片 background-image
+   ✔️main：
 
-   main：
+   ✔️scroll: singerList -> singerGroup -> 歌手详情
 
-   scroll 歌手排行列表 → 歌手详情
-
-   sider 索引列表组件
+   ✔️index-list: 左边为 singerList 右边为索引列表
 
 5. 歌手详情页面（like 专辑详情页面）
 
