@@ -1,12 +1,13 @@
 <template>
   <div class="singer" v-loading="!singers.length">
-    <index-list :data="singers"></index-list>
+    <index-list :data="singers" @select="selectSinger"></index-list>
+    <router-view :singer="selectedSinger"></router-view>
   </div>
 </template>
 
 <script>
-import { getSingerList } from "@/service/singer";
-import IndexList from "@/components/base/index-list/index-list.vue";
+import { getSingerList } from "@/service/singer"
+import IndexList from "@/components/base/index-list/index-list.vue"
 export default {
   name: "singer",
   components: {
@@ -15,13 +16,23 @@ export default {
   data() {
     return {
       singers: [],
-    };
+      selectedSinger: null,
+    }
   },
   async created() {
-    const results = await getSingerList();
-    this.singers = results.singers;
+    const results = await getSingerList()
+    this.singers = results.singers
   },
-};
+  methods: {
+    selectSinger(singer) {
+      console.log(this.$router, singer)
+      this.selectedSinger = singer
+      this.$router.push({
+        path: `/singer/${singer.mid}`,
+      })
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>

@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import { getRecommend } from "@/service/recommend";
-import Slider from "@/components/base/slider/slider";
-import Scroll from "@/components/base/scroll/scroll";
+import { getRecommend } from "@/service/recommend"
+import Slider from "@/components/base/slider/slider"
+import Scroll from "@/components/base/scroll/scroll"
 export default {
   name: "recommend",
   components: {
@@ -42,20 +42,20 @@ export default {
       sliders: [],
       albums: [],
       loadingText: "加载中",
-    };
+    }
   },
   computed: {
     loading() {
-      return !this.sliders.length && !this.albums.length;
+      return !this.sliders.length && !this.albums.length
     },
   },
   async created() {
-    const result = await getRecommend();
-    console.log(result);
-    this.sliders = result.sliders;
-    this.albums = result.albums;
+    const result = await getRecommend()
+    console.log(result)
+    this.sliders = result.sliders
+    this.albums = result.albums
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,13 +1,13 @@
-import BScroll from "@better-scroll/core";
-import Slide from "@better-scroll/slide";
+import BScroll from "@better-scroll/core"
+import Slide from "@better-scroll/slide"
 
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue"
 
-BScroll.use(Slide);
+BScroll.use(Slide)
 
 export default function useSlider(wrapperRef) {
-  const slider = ref(null);
-  const currentPageIndex = ref(0);
+  const slider = ref(null)
+  const currentPageIndex = ref(0)
 
   onMounted(() => {
     const sliderVal = (slider.value = new BScroll(wrapperRef.value, {
@@ -18,17 +18,17 @@ export default function useSlider(wrapperRef) {
       bounce: false,
       probeType: 2,
       slide: true,
-    }));
+    }))
     sliderVal.on("slideWillChange", (page) => {
-      currentPageIndex.value = page.pageX;
-    });
-  });
+      currentPageIndex.value = page.pageX
+    })
+  })
   onUnmounted(() => {
-    slider.value.destroy();
-  });
+    slider.value.destroy()
+  })
 
   return {
     slider,
     currentPageIndex,
-  };
+  }
 }

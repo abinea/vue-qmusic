@@ -1,32 +1,41 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-
+import { createRouter, createWebHashHistory } from "vue-router"
+import Recommend from "@/views/recommend"
+import Singer from "@/views/singer"
+import Toplist from "@/views/top-list"
+import Search from "@/views/search"
+import SingerDetail from "@/views/singer-detail"
 const routes = [
-  { path: "/", redirect: "/recommend" },
   {
-    name: "推荐",
+    path: "/",
+    redirect: "/recommend",
+  },
+  {
     path: "/recommend",
-    component: () => import("@/views/recommend.vue"),
+    component: Recommend,
   },
   {
-    name: "歌手",
     path: "/singer",
-    component: () => import("@/views/singer.vue"),
+    component: Singer,
+    children: [
+      {
+        path: ":id",
+        component: SingerDetail,
+      },
+    ],
   },
   {
-    name: "排行",
     path: "/top-list",
-    component: () => import("@/views/top-list.vue"),
+    component: Toplist,
   },
   {
-    name: "搜索",
     path: "/search",
-    component: () => import("@/views/search.vue"),
+    component: Search,
   },
-];
+]
 
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes,
-});
+})
 
-export default router;
+export default router

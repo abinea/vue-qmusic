@@ -1,5 +1,5 @@
-const { defineConfig } = require("@vue/cli-service");
-const registerRouter = require("./backend/router");
+const { defineConfig } = require("@vue/cli-service")
+const registerRouter = require("./backend/router")
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -15,8 +15,8 @@ module.exports = defineConfig({
   },
   devServer: {
     onBeforeSetupMiddleware: (devServer) => {
-      registerRouter(devServer.app);
+      registerRouter(devServer.app)
     },
   },
   productionSourceMap: false,
-});
+})

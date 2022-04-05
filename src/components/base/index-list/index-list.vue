@@ -38,9 +38,9 @@
 </template>
 
 <script>
-import Scroll from "@/components/base/scroll/scroll";
-import useFixed from "./use-fixed";
-import useShortcut from "./use-shortcut";
+import Scroll from "@/components/base/scroll/scroll"
+import useFixed from "./use-fixed"
+import useShortcut from "./use-shortcut"
 
 export default {
   name: "index-list",
@@ -49,24 +49,24 @@ export default {
     data: {
       type: Array,
       default() {
-        return [];
+        return []
       },
     },
   },
   emits: ["select"],
   setup(props, { emit }) {
     const { groupRef, onScroll, fixedTitle, fixedStyle, currentIndex } =
-      useFixed(props);
+      useFixed(props)
 
     const {
       shortcutList,
       scrollRef,
       onShortcutTouchStart,
       onShortcutTouchMove,
-    } = useShortcut(props, groupRef);
+    } = useShortcut(props, groupRef)
 
     function onItemClick(item) {
-      emit("select", item);
+      emit("select", item)
     }
     return {
       onItemClick,
@@ -79,9 +79,9 @@ export default {
       scrollRef,
       onShortcutTouchStart,
       onShortcutTouchMove,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

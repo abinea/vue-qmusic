@@ -13,14 +13,14 @@ export default {
   data() {
     return {
       title: "加载中...",
-    };
+    }
   },
   methods: {
     setTitle(title) {
-      this.title = title;
+      this.title = title
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
