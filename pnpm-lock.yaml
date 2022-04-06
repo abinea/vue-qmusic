@@ -21,6 +21,7 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-promise: ^5.1.0
   eslint-plugin-vue: ^8.0.3
+  good-storage: ^1.1.1
   pinyin: ^2.11.1
   prettier: ^2.6.1
   sass: ^1.32.7
@@ -36,6 +37,7 @@ dependencies:
   '@better-scroll/slide': 2.4.2
   axios: 0.26.1
   core-js: 3.21.1
+  good-storage: 1.1.1
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
   vue3-lazy: 1.0.0-alpha.1_vue@3.2.31
@@ -4183,6 +4185,10 @@ packages:
       merge2: 1.4.1
       slash: 3.0.0
     dev: true
+
+  /good-storage/1.1.1:
+    resolution: {integrity: sha512-+0UEpRT03fJgEJoeTVVz41ISC5+jaQrDIWatQ4BoDQfOiBBsjNanymi9sAtLFdEAADQN0FYR8mGpeqxSCe8oXQ==}
+    dev: false
 
   /graceful-fs/4.2.9:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
