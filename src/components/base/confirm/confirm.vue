@@ -22,43 +22,43 @@
 
 <script>
 export default {
-  name: 'confirm',
+  name: "confirm",
   props: {
     text: {
       type: String,
-      default: ''
+      default: "",
     },
     confirmBtnText: {
       type: String,
-      default: '确定'
+      default: "确定",
     },
     cancelBtnText: {
       type: String,
-      default: '取消'
-    }
+      default: "取消",
+    },
   },
-  data () {
+  data() {
     return {
-      visible: false
+      visible: false,
     }
   },
-  emits: ['confirm', 'cancel'],
+  emits: ["confirm", "cancel"],
   methods: {
-    confirm () {
+    confirm() {
       this.hide()
-      this.$emit('confirm')
+      this.$emit("confirm")
     },
-    cancel () {
+    cancel() {
       this.hide()
-      this.$emit('cancel')
+      this.$emit("cancel")
     },
-    hide () {
+    hide() {
       this.visible = false
     },
-    show () {
+    show() {
       this.visible = true
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -73,18 +73,18 @@ export default {
   background-color: $color-background-d;
 
   &.confirm-fade-enter-active {
-    animation: confirm-fadein .3s;
+    animation: confirm-fadein 0.3s;
 
     .confirm-content {
-      animation: confirm-zoom-in .3s;
+      animation: confirm-zoom-in 0.3s;
     }
   }
 
   &.confirm-fade-leave-active {
-    animation: confirm-fadeout .3s;
+    animation: confirm-fadeout 0.3s;
 
     .confirm-content {
-      animation: confirm-zoom-out .3s;
+      animation: confirm-zoom-out 0.3s;
     }
   }
 

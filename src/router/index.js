@@ -4,6 +4,8 @@ import Singer from "@/views/singer"
 import Toplist from "@/views/top-list"
 import Search from "@/views/search"
 import SingerDetail from "@/views/singer-detail"
+import Album from "@/views/album"
+
 const routes = [
   {
     path: "/",
@@ -12,6 +14,12 @@ const routes = [
   {
     path: "/recommend",
     component: Recommend,
+    children: [
+      {
+        path: ":id",
+        component: Album,
+      },
+    ],
   },
   {
     path: "/singer",
