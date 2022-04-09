@@ -2,19 +2,19 @@
 
 #### 视图组件
 
-1. ✔️ 推荐页面（首页）
+1. 推荐页面（首页）
 
-   ✔️header： 左 logo 右 user-icon → 用户中心页
+   header： 左 logo 右 user-icon → 用户中心页
 
-   ✔️tab：推荐、歌手、排行、搜索
+   tab：推荐、歌手、排行、搜索
 
-   ✔️slider：轮播图 → 活动页
+   slider：轮播图 → 活动页
 
-   ✔️main：
+   main：
 
-   ✔️header 标题
+   header 标题
 
-   ✔️scroll：歌单列表 （按需加载、虚拟化列表）→ 专辑详情页
+   scroll：歌单列表 （按需加载、虚拟化列表）→ 专辑详情页
 
 2. 专辑详情页面
 
@@ -36,13 +36,13 @@
 
    main：scroll 搜索详情/搜索无结果
 
-4. ✔️ 歌手页面
+4. 歌手页面
 
-   ✔️main：
+   main：
 
-   ✔️scroll: singerList -> singerGroup -> 歌手详情
+   scroll: singerList -> singerGroup -> 歌手详情
 
-   ✔️index-list: 左边为 singerList 右边为索引列表
+   index-list: 左边为 singerList 右边为索引列表
 
 5. 歌手详情页面（like 专辑详情页面）
 
@@ -61,12 +61,12 @@
 #### 基础组件
 
 1. Confirm：对话框确认组件
-2. ✔️Loading：加载状态组件
+2. Loading：加载状态组件
 3. Message：消息组件
 4. NoResult：无结果组件
-5. ✔️Scroll：滚动组件（useScroll）
+5. Scroll：滚动组件（useScroll）
 6. SearchList：搜索列表组件
-7. ✔️Silder：轮播图组件（useSlider）
+7. Silder：轮播图组件（useSlider）
 8. SongList：歌曲列表组件
 9. Switches：导航栏切换组件
 
@@ -105,12 +105,12 @@
 2. constant：常量存储模块
 3. create-detail-component：创建通用详情模块
 4. create-loading-like-directive：创建类似 loading 效果的自定义指令模块
-5. ✔️dom：DOM 操作辅助模块
+5. dom：DOM 操作辅助模块
 6. util：工具库模块
 
 #### 第三方库
 
-✔️vue-router 路由管理，异步路由实现按需加载
+vue-router 路由管理，异步路由实现按需加载
 
 vuex 全局状态管理，本地存储
 
