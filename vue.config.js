@@ -14,8 +14,13 @@ module.exports = defineConfig({
     },
   },
   devServer: {
-    onBeforeSetupMiddleware: (devServer) => {
+    setupMiddlewares: (middlewares, devServer) => {
+      if (!devServer) {
+        throw new Error("webpack-dev-server is not defined")
+      }
       registerRouter(devServer.app)
+
+      return middlewares
     },
   },
   configureWebpack: (config) => {

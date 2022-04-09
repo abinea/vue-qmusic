@@ -106,29 +106,6 @@ function mergeSinger(singer) {
   return ret.join("/")
 }
 
-// 注册后端路由
-function registerRouter(app) {
-  registerRecommend(app)
-
-  registerSingerList(app)
-
-  registerSingerDetail(app)
-
-  registerSongsUrl(app)
-
-  registerLyric(app)
-
-  registerAlbum(app)
-
-  registerTopList(app)
-
-  registerTopDetail(app)
-
-  registerHotKeys(app)
-
-  registerSearch(app)
-}
-
 // 注册推荐列表接口路由
 function registerRecommend(app) {
   app.get("/api/getRecommend", (req, res) => {
@@ -741,6 +718,29 @@ function registerSearch(app) {
       }
     })
   })
+}
+
+// 注册后端路由
+function registerRouter(app) {
+  registerRecommend(app)
+
+  registerSingerList(app)
+
+  registerSingerDetail(app)
+
+  registerSongsUrl(app)
+
+  registerLyric(app)
+
+  registerAlbum(app)
+
+  registerTopList(app)
+
+  registerTopDetail(app)
+
+  registerHotKeys(app)
+
+  registerSearch(app)
 }
 
 module.exports = registerRouter
