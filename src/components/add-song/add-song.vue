@@ -39,18 +39,17 @@
           </div>
         </div>
         <div class="search-result" v-show="query">
-          <suggest
+          <Suggest
             :query="query"
             :show-singer="false"
-            @select-song="selectSongBySuggest">
-          </suggest>
+            @select-song="selectSongBySuggest" />
         </div>
-        <message ref="messageRef">
+        <Message ref="messageRef">
           <div class="message-title">
             <i class="icon-ok"></i>
             <span class="text">1首歌曲已经添加到播放列表</span>
           </div>
-        </message>
+        </Message>
       </div>
     </transition>
   </teleport>
@@ -60,10 +59,10 @@
 import SearchInput from "@/components/search/search-input"
 import Suggest from "@/components/search/suggest"
 import Scroll from "@/components/base/scroll/scroll"
-// import Switches from "@/components/base/switches/switches"
+import Switches from "@/components/base/switches/switches"
 import SongList from "@/components/base/song-list/song-list"
 import SearchList from "@/components/base/search-list/search-list"
-// import Message from "@/components/base/message/message"
+import Message from "@/components/base/message/message"
 
 import { ref, computed, nextTick, watch } from "vue"
 import { useStore } from "vuex"
@@ -74,11 +73,11 @@ export default {
   components: {
     SearchInput,
     Suggest,
-    // Switches,
+    Switches,
     Scroll,
     SongList,
     SearchList,
-    // Message,
+    Message,
   },
   setup() {
     const visible = ref(false)
