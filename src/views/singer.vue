@@ -13,7 +13,7 @@
 <script>
 import storage from "good-storage"
 import { getSingerList } from "@/service/singer"
-import IndexList from "@/components/base/index-list/index-list.vue"
+import IndexList from "@/components/index-list/index-list.vue"
 import { SINGER_KEY } from "@/assets/js/constant"
 
 export default {
