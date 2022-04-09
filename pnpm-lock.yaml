@@ -5,6 +5,7 @@ specifiers:
   '@babel/eslint-parser': ^7.12.16
   '@better-scroll/core': ^2.4.2
   '@better-scroll/observe-dom': ^2.4.2
+  '@better-scroll/pull-up': ^2.4.2
   '@better-scroll/slide': ^2.4.2
   '@vue/cli-plugin-babel': ~5.0.0
   '@vue/cli-plugin-eslint': ~5.0.0
@@ -29,6 +30,7 @@ specifiers:
   prettier: ^2.6.1
   sass: ^1.32.7
   sass-loader: ^12.0.0
+  throttle-debounce: ^3.0.1
   vue: ^3.2.13
   vue-router: ^4.0.3
   vue3-lazy: ^1.0.0-alpha.1
@@ -37,12 +39,14 @@ specifiers:
 dependencies:
   '@better-scroll/core': 2.4.2
   '@better-scroll/observe-dom': 2.4.2
+  '@better-scroll/pull-up': 2.4.2
   '@better-scroll/slide': 2.4.2
   axios: 0.26.1
   core-js: 3.21.1
   create-keyframe-animation: 0.1.0
   good-storage: 1.1.1
   lyric-parser: 1.0.1
+  throttle-debounce: 3.0.1
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
   vue3-lazy: 1.0.0-alpha.1_vue@3.2.31
@@ -1293,6 +1297,12 @@ packages:
 
   /@better-scroll/observe-dom/2.4.2:
     resolution: {integrity: sha512-eeS77CZs+V72dkya10e5ptndBAbhQVcXoYGvfoIihOJgCPqO5MdYTpzRmlbshYCEE5juUMLe82Kx8FSbOejpAw==}
+    dependencies:
+      '@better-scroll/core': 2.4.2
+    dev: false
+
+  /@better-scroll/pull-up/2.4.2:
+    resolution: {integrity: sha512-07Cke3oa96lN9/inxJZ0ixh0nBbbqxOi2IKcBGtD6dP+susiMcdhgd/c7zNRjXkwlw0vzTNfXTgExIOEWzLHYg==}
     dependencies:
       '@better-scroll/core': 2.4.2
     dev: false
@@ -6923,6 +6933,11 @@ packages:
       schema-utils: 3.1.1
       webpack: 5.70.0
     dev: true
+
+  /throttle-debounce/3.0.1:
+    resolution: {integrity: sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==}
+    engines: {node: '>=10'}
+    dev: false
 
   /thunky/1.1.0:
     resolution: {integrity: sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==}

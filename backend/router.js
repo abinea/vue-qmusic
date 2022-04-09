@@ -1,11 +1,19 @@
+/*
+ * 该文件是运行在 Node.js 端的，获取数据的基本的思路就是后端代理，即提供接口路由供前端页面使用，然后在路由内部，我们接收到前端请求后，再发送 HTTP 请求到第三方服务接口，携带相应的请求参数，包括签名的参数字段等等。
+ * 对于从第三方接口返回的数据，我们会做一层数据处理，最终提供给前端的数据前端可以直接使用，无需再处理。这样也比较符合真实企业项目的开发规范，即数据的处理放在后端做，前端只做数据渲染和交互。
+ */
 const axios = require("axios")
-// 获取签名方法
-const getSecuritySign = require("./sign")
 const pinyin = require("pinyin")
 const Base64 = require("js-base64").Base64
+// 获取签名方法
+const getSecuritySign = require("./sign")
 
 const ERR_OK = 0
 const token = 5381
+
+// 歌曲图片加载失败时使用的默认图片
+const fallbackPicUrl =
+  "https://y.gtimg.cn/mediastyle/music_v11/extra/default_300x300.jpg?max_age=31536000"
 
 // 公共参数
 const commonParams = {
@@ -20,10 +28,42 @@ const commonParams = {
   platform: "yqq.json",
 }
 
-// 歌曲图片加载失败时使用的默认图片
-const fallbackPicUrl =
-  "https://y.gtimg.cn/mediastyle/music_v11/extra/default_300x300.jpg?max_age=31536000"
+// 获取一个随机数值
+function getRandomVal(prefix = "") {
+  return prefix + (Math.random() + "").replace("0.", "")
+}
 
+// 获取一个随机 uid
+function getUid() {
+  const t = new Date().getUTCMilliseconds()
+  return "" + ((Math.round(2147483647 * Math.random()) * t) % 1e10)
+}
+
+// 对 axios get 请求的封装
+// 修改请求的 headers 值，合并公共请求参数
+function get(url, params) {
+  return axios.get(url, {
+    headers: {
+      referer: "https://y.qq.com/",
+      origin: "https://y.qq.com/",
+    },
+    params: Object.assign({}, commonParams, params),
+  })
+}
+
+// 对 axios post 请求的封装
+// 修改请求的 headers 值
+function post(url, params) {
+  return axios.post(url, params, {
+    headers: {
+      referer: "https://y.qq.com/",
+      origin: "https://y.qq.com/",
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  })
+}
+
+// 处理歌曲列表
 function handleSongList(list) {
   const songList = []
 
@@ -66,47 +106,36 @@ function mergeSinger(singer) {
   return ret.join("/")
 }
 
-// 获取一个随机数值
-function getRandomVal(prefix = "") {
-  return prefix + (Math.random() + "").replace("0.", "")
+// 注册后端路由
+function registerRouter(app) {
+  registerRecommend(app)
+
+  registerSingerList(app)
+
+  registerSingerDetail(app)
+
+  registerSongsUrl(app)
+
+  registerLyric(app)
+
+  registerAlbum(app)
+
+  registerTopList(app)
+
+  registerTopDetail(app)
+
+  registerHotKeys(app)
+
+  registerSearch(app)
 }
 
-// 获取一个随机 uid
-function getUid() {
-  const t = new Date().getUTCMilliseconds()
-  return "" + ((Math.round(2147483647 * Math.random()) * t) % 1e10)
-}
-
-// 对 axios get 请求的封装
-// 修改请求的 headers 值，合并公共请求参数
-function get(url, params) {
-  return axios.get(url, {
-    headers: {
-      referer: "https://y.qq.com/",
-      origin: "https://y.qq.com/",
-    },
-    params: Object.assign({}, commonParams, params),
-  })
-}
-
-// 对 axios post 请求的封装
-// 修改请求的 headers 值
-function post(url, params) {
-  return axios.post(url, params, {
-    headers: {
-      referer: "https://y.qq.com/",
-      origin: "https://y.qq.com/",
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-  })
-}
-
+// 注册推荐列表接口路由
 function registerRecommend(app) {
   app.get("/api/getRecommend", (req, res) => {
     // 第三方服务接口 url
     const url = "https://u.y.qq.com/cgi-bin/musics.fcg"
 
-    // 构造请求参数 data
+    // 构造请求 data 参数
     const data = JSON.stringify({
       comm: { ct: 24 },
       recomPlaylist: {
@@ -156,10 +185,11 @@ function registerRecommend(app) {
           } else if (item.jumptype === 3001) {
             sliderItem.link = item.id
           }
+
           sliders.push(sliderItem)
         }
 
-        // 处理歌单数据
+        // 处理推荐歌单数据
         const albumList = data.recomPlaylist.data.v_hot
         const albums = []
         for (let i = 0; i < albumList.length; i++) {
@@ -189,7 +219,8 @@ function registerRecommend(app) {
   })
 }
 
-function registerSingeList(app) {
+// 注册歌手列表接口路由
+function registerSingerList(app) {
   app.get("/api/getSingerList", (req, res) => {
     const url = "https://u.y.qq.com/cgi-bin/musics.fcg"
     const HOT_NAME = "热"
@@ -209,6 +240,7 @@ function registerSingeList(app) {
         },
       },
     })
+
     const randomKey = getRandomVal("getUCGI")
     const sign = getSecuritySign(data)
 
@@ -219,9 +251,10 @@ function registerSingeList(app) {
     }).then((response) => {
       const data = response.data
       if (data.code === ERR_OK) {
-        // 处理歌手数据
+        // 处理歌手列表数据
         const singerList = data.singerList.data.singerlist
-        // 构造歌手列表数据
+
+        // 构造歌手 Map 数据结构
         const singerMap = {
           hot: {
             title: HOT_NAME,
@@ -230,6 +263,7 @@ function registerSingeList(app) {
         }
 
         singerList.forEach((item) => {
+          // 把歌手名转成拼音
           const p = pinyin(item.singer_name)
           if (!p || !p.length) {
             return
@@ -243,16 +277,17 @@ function registerSingeList(app) {
                 list: [],
               }
             }
-            // 每个字母下面会有很多歌手
+            // 每个字母下面会有多名歌手
             singerMap[key].list.push(map([item])[0])
           }
         })
+
         // 热门歌手
         const hot = []
         // 字母歌手
         const letter = []
 
-        // 遍历处理 SingerMap，让结果有序
+        // 遍历处理 singerMap，让结果有序
         for (const key in singerMap) {
           const item = singerMap[key]
           if (item.title.match(/[a-zA-Z]/)) {
@@ -261,7 +296,11 @@ function registerSingeList(app) {
             hot.push(item)
           }
         }
-        letter.sort((a, b) => a.title.charCodeAt(0) - b.title.charCodeAt(0))
+        // 按字母顺序排序
+        letter.sort((a, b) => {
+          return a.title.charCodeAt(0) - b.title.charCodeAt(0)
+        })
+
         res.json({
           code: ERR_OK,
           result: {
@@ -273,6 +312,8 @@ function registerSingeList(app) {
       }
     })
   })
+
+  // 做一层数据映射，构造单个 singer 数据结构
   function map(singerList) {
     return singerList.map((item) => {
       return {
@@ -287,6 +328,7 @@ function registerSingeList(app) {
   }
 }
 
+// 注册歌手详情接口路由
 function registerSingerDetail(app) {
   app.get("/api/getSingerDetail", (req, res) => {
     const url = "https://u.y.qq.com/cgi-bin/musics.fcg"
@@ -585,16 +627,120 @@ function registerTopDetail(app) {
   })
 }
 
-// 注册后端路由
-function registerRouter(app) {
-  registerRecommend(app)
-  registerSingeList(app)
-  registerSingerDetail(app)
-  registerSongsUrl(app)
-  registerLyric(app)
-  registerAlbum(app)
-  registerTopList(app)
-  registerTopDetail(app)
+// 注册热门搜索接口
+function registerHotKeys(app) {
+  app.get("/api/getHotKeys", (req, res) => {
+    const url = "https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg"
+
+    get(url, {
+      g_tk_new_20200303: token,
+    }).then((response) => {
+      const data = response.data
+      if (data.code === ERR_OK) {
+        res.json({
+          code: ERR_OK,
+          result: {
+            hotKeys: data.data.hotkey
+              .map((key) => {
+                return {
+                  key: key.k,
+                  id: key.n,
+                }
+              })
+              .slice(0, 10),
+          },
+        })
+      } else {
+        res.json(data)
+      }
+    })
+  })
+}
+
+// 注册搜索查询接口
+function registerSearch(app) {
+  app.get("/api/search", (req, res) => {
+    const url = "https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp"
+
+    const { query, page, showSinger } = req.query
+
+    const data = {
+      _: getRandomVal(),
+      g_tk_new_20200303: token,
+      w: query,
+      p: page,
+      perpage: 20,
+      n: 20,
+      zhidaqu: 1,
+      catZhida: showSinger === "true" ? 1 : 0,
+      t: 0,
+      flag: 1,
+      ie: "utf-8",
+      sem: 1,
+      aggr: 0,
+      remoteplace: "txt.mqq.all",
+      uin: "0",
+      needNewCode: 1,
+      platform: "h5",
+      format: "json",
+    }
+
+    get(url, data).then((response) => {
+      const data = response.data
+      if (data.code === ERR_OK) {
+        const songList = []
+        const songData = data.data.song
+        const list = songData.list
+
+        list.forEach((item) => {
+          const info = item
+          if (info.pay.payplay !== 0 || !info.interval) {
+            // 过滤付费歌曲
+            return
+          }
+
+          const song = {
+            id: info.songid,
+            mid: info.songmid,
+            name: info.songname,
+            singer: mergeSinger(info.singer),
+            url: "",
+            duration: info.interval,
+            pic: info.albummid
+              ? `https://y.gtimg.cn/music/photo_new/T002R800x800M000${info.albummid}.jpg?max_age=2592000`
+              : fallbackPicUrl,
+            album: info.albumname,
+          }
+          songList.push(song)
+        })
+
+        let singer
+        const zhida = data.data.zhida
+        if (zhida && zhida.type === 2) {
+          singer = {
+            id: zhida.singerid,
+            mid: zhida.singermid,
+            name: zhida.singername,
+            pic: `https://y.gtimg.cn/music/photo_new/T001R800x800M000${zhida.singermid}.jpg?max_age=2592000`,
+          }
+        }
+
+        const { curnum, curpage, totalnum } = songData
+        const hasMore = 20 * (curpage - 1) + curnum < totalnum
+
+        res.json({
+          code: ERR_OK,
+          result: {
+            songs: songList,
+            singer,
+            hasMore,
+          },
+        })
+      } else {
+        res.json(data)
+      }
+    })
+  })
 }
 
 module.exports = registerRouter

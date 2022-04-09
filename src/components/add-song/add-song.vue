@@ -59,11 +59,12 @@
 <script>
 import SearchInput from "@/components/search/search-input"
 import Suggest from "@/components/search/suggest"
-import Switches from "@/components/base/switches/switches"
 import Scroll from "@/components/base/scroll/scroll"
+// import Switches from "@/components/base/switches/switches"
 import SongList from "@/components/base/song-list/song-list"
 import SearchList from "@/components/base/search-list/search-list"
-import Message from "@/components/base/message/message"
+// import Message from "@/components/base/message/message"
+
 import { ref, computed, nextTick, watch } from "vue"
 import { useStore } from "vuex"
 import useSearchHistory from "@/components/search/use-search-history"
@@ -73,11 +74,11 @@ export default {
   components: {
     SearchInput,
     Suggest,
-    Switches,
+    // Switches,
     Scroll,
     SongList,
     SearchList,
-    Message,
+    // Message,
   },
   setup() {
     const visible = ref(false)

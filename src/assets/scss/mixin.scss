@@ -7,17 +7,17 @@
 }
 
 // 禁止折行
-@mixin no-wrap {
+@mixin no-wrap() {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 // 扩展小图标按钮的点击区域
-@mixin extend-click {
+@mixin extend-click() {
   position: relative;
-  &::before {
-    content: "";
+  &:before {
+    content: '';
     position: absolute;
     top: -10px;
     left: -10px;
