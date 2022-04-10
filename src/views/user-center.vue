@@ -15,12 +15,12 @@
     <div class="list-wrapper">
       <scroll class="list-scroll" v-if="currentIndex === 0">
         <div class="list-inner">
-          <SongList :songs="favoriteList" @select="selectSong" />
+          <song-list :songs="favoriteList" @select="selectSong"></song-list>
         </div>
       </scroll>
       <scroll class="list-scroll" v-if="currentIndex === 1">
         <div class="list-inner">
-          <SongList :songs="playHistory" @select="selectSong" />
+          <song-list :songs="playHistory" @select="selectSong"></song-list>
         </div>
       </scroll>
     </div>
