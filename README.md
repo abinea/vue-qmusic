@@ -88,7 +88,7 @@
 
 #### 后端接口
 
-1. ✔️ 推荐列表
+1. 推荐列表
 2. 歌曲列表
 3. 歌手详情
 4. 歌曲 url 获取
@@ -114,9 +114,9 @@ vue-router 路由管理，异步路由实现按需加载
 
 vuex 全局状态管理，本地存储
 
-✔️better-scroll 滚动插件
+better-scroll 滚动插件
 
-✔️vue3-lazy 图片懒加载插件
+vue3-lazy 图片懒加载插件
 
 good-storage 本地存储插件
 
