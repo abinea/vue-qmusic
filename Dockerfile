@@ -12,5 +12,3 @@ RUN apt update -y && \
 
 WORKDIR /backend
 RUN npm config set registry https://registry.npmmirror.com/ && npm install
-
-# ENTRYPOINT ["/backend/docker-entrypoint.sh"]
