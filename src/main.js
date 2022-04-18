@@ -32,7 +32,7 @@ createApp(App)
   .use(router)
   .use(store)
   .use(lazyPlugin, {
-    loading: require("@/assets/images/default.png"),
+    loading: require("@/assets/images/default.webp"),
   })
   .directive("loading", loadingDirective)
   .directive("no-result", noResultDirective)
