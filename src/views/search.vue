@@ -64,7 +64,6 @@ import storage from "good-storage"
 import { SINGER_KEY } from "@/assets/js/constant"
 import useSearchHistory from "@/components/search/use-search-history"
 import Scroll from "@/components/wrap-scroll"
-
 export default {
   name: "search",
   components: {
@@ -80,56 +79,43 @@ export default {
     const selectedSinger = ref(null)
     const scrollRef = ref(null)
     const confirmRef = ref(null)
-
     const store = useStore()
     const searchHistory = computed(() => store.state.searchHistory)
-
     const router = useRouter()
-
     const { saveSearch, deleteSearch, clearSearch } = useSearchHistory()
-
     getHotKeys().then((result) => {
       hotKeys.value = result.hotKeys
     })
-
     watch(query, async (newQuery) => {
       if (!newQuery) {
         await nextTick()
         refreshScroll()
       }
     })
-
     function refreshScroll() {
       scrollRef.value.scroll.refresh()
     }
-
     function addQuery(s) {
       query.value = s
     }
-
     function selectSong(song) {
       saveSearch(query.value)
       store.dispatch("addSong", song)
     }
-
     function selectSinger(singer) {
       saveSearch(query.value)
       selectedSinger.value = singer
       cacheSinger(singer)
-
       router.push({
         path: `/search/${singer.mid}`,
       })
     }
-
     function cacheSinger(singer) {
       storage.session.set(SINGER_KEY, singer)
     }
-
     function showConfirm() {
       confirmRef.value.show()
     }
-
     return {
       scrollRef,
       confirmRef,
@@ -156,24 +142,19 @@ export default {
   bottom: 0;
   display: flex;
   flex-direction: column;
-
   .search-input-wrapper {
     margin: 20px;
   }
-
   .search-content {
     flex: 1;
     overflow: hidden;
-
     .hot-keys {
       margin: 0 20px 20px 20px;
-
       .title {
         margin-bottom: 20px;
         font-size: $font-size-medium;
         color: $color-text-l;
       }
-
       .item {
         display: inline-block;
         padding: 5px 10px;
@@ -184,25 +165,20 @@ export default {
         color: $color-text-d;
       }
     }
-
     .search-history {
       position: relative;
       margin: 0 20px;
-
       .title {
         display: flex;
         align-items: center;
         height: 40px;
         font-size: $font-size-medium;
         color: $color-text-l;
-
         .text {
           flex: 1;
         }
-
         .clear {
           @include extend-click();
-
           .icon-clear {
             font-size: $font-size-medium;
             color: $color-text-d;
@@ -211,7 +187,6 @@ export default {
       }
     }
   }
-
   .search-result {
     flex: 1;
     overflow: hidden;

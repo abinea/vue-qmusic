@@ -520,7 +520,7 @@ export default {
             font-size: $font-size-medium;
 
             &.current {
-              color: $color-text;
+              color: $color-theme;
             }
           }
 

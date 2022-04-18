@@ -63,9 +63,7 @@ export default {
       return !singer.value && !songs.value.length && !hasMore.value
     })
 
-    const pullUpLoading = computed(() => {
-      return isPullUpLoad.value && hasMore.value
-    })
+    const pullUpLoading = computed(() => isPullUpLoad.value && hasMore.value)
 
     const preventPullUpload = computed(() => {
       return loading.value || manualLoading.value
