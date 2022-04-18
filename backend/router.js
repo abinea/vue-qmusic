@@ -551,14 +551,14 @@ function registerHotKeys(app) {
 // 注册搜索查询接口
 function registerSearch(app) {
   app.get("/api/search", (req, res) => {
-    const url = "https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp"
+    const url = "https://c.y.qq.com/soso/fcgi-bin/client_search_cp"
 
     const { query, page, showSinger } = req.query
 
     const data = {
       _: getRandomVal(),
       g_tk_new_20200303: token,
-      key: query,
+      w: query,
       p: page,
       perpage: 20,
       n: 20,
@@ -576,7 +576,9 @@ function registerSearch(app) {
       format: "json",
     }
 
-    get(url, data).then((response) => {
+    const header = { host: "c.y.qq.com" }
+
+    get(url, data, header).then((response) => {
       const data = response.data
       if (data.code === ERR_OK) {
         const songList = []

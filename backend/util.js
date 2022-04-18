@@ -23,11 +23,11 @@ const commonParams = {
 
 // 对 axios get 请求的封装
 // 修改请求的 headers 值，合并公共请求参数
-function get(url, params) {
+function get(url, params, header = { origin: "https://y.qq.com/" }) {
   return axios.get(url, {
     headers: {
       referer: "https://y.qq.com/",
-      origin: "https://y.qq.com/",
+      ...header,
     },
     params: Object.assign({}, commonParams, params),
   })
