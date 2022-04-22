@@ -1,14 +1,16 @@
 FROM nginx
-RUN mkdir /vue-next-music
+RUN mkdir /vue-qmusic
 RUN mkdir /backend
+COPY dist /vue-qmusic
 COPY backend /backend
-COPY dist /vue-next-music
+
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY sources.list /etc/apt/sources.list
-ADD docker-entrypoint.sh /backend
+
 RUN apt update -y && \
   apt upgrade -y && \
-  apt install --fix-missing -y nodejs npm
+  apt install --fix-missing -y nodejs
+
+RUN rm /etc/apt/sources.list
 
 WORKDIR /backend
-RUN npm config set registry https://registry.npmmirror.com/ && npm install
